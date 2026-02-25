@@ -1,12 +1,103 @@
+/* --------------------
+   CSS RESET
+-------------------- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* --------------------
+   DESIGN TOKENS
+-------------------- */
+:root {
+  /* colors */
+  --bg-main: #fff6f8;
+  --bg-card: #ffffff;
+  --primary: #f4a7b9;
+  --secondary: #cdb4db;
+  --accent: #ffcad4;
+  --border-soft: #f1d6dc;
+  --text-main: #4a4a4a;
+  --text-muted: #8b8b8b;
+
+  /* spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 3rem;
+
+  /* radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+
+  /* shadow */
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+/* --------------------
+   BASE STYLES
+-------------------- */
 body {
   font-family: 'Poppins', sans-serif;
-  background: #fff6f8;
-  color: #4a4a4a;
+  background-color: var(--bg-main);
+  color: var(--text-main);
   min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* --------------------
+   TYPOGRAPHY
+-------------------- */
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+}
+
+h2 {
+  margin-bottom: var(--space-sm);
+  font-size: 1.6rem;
+}
+
+/* --------------------
+   HEADER
+-------------------- */
+header {
+  text-align: center;
+  padding: var(--space-lg) var(--space-sm);
+}
+
+header h1 {
+  font-size: 2.6rem;
+}
+
+header p {
+  margin-top: var(--space-xs);
+  color: var(--text-muted);
+}
+
+/* --------------------
+   LAYOUT
+-------------------- */
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--space-md);
+}
+
+/* reusable card section */
+.section {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+  box-shadow: var(--shadow-soft);
+}
+
+/* --------------------
+   SMALL POLISH
+-------------------- */
+.section:hover {
+  transform: translateY(-2px);
+  transition: transform 0.2s ease;
 }
