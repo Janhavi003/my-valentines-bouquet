@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Valentine’s Bouquet 🌸</title>
+  <title>My Valentine’s Bouquet 💐</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="styles/style.css" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
 
@@ -21,27 +21,45 @@
   </header>
 
   <main>
+
     <section class="section">
       <h2>Choose Your Flowers</h2>
-      <!-- Flower carousel goes here -->
+      <div class="carousel">
+        <button class="carousel-btn">‹</button>
+        <div class="carousel-track" id="flower-carousel"></div>
+        <button class="carousel-btn">›</button>
+      </div>
     </section>
 
     <section class="section">
       <h2>Choose a Vase</h2>
-      <!-- Vase carousel goes here -->
+      <div class="carousel">
+        <button class="carousel-btn">‹</button>
+        <div class="carousel-track" id="vase-carousel"></div>
+        <button class="carousel-btn">›</button>
+      </div>
     </section>
 
     <section class="section">
       <h2>Add a Message</h2>
-      <!-- Message input goes here -->
+      <textarea
+        class="message-input"
+        rows="4"
+        placeholder="Write something sweet..."
+      ></textarea>
     </section>
 
-    <section class="section">
+    <section class="section preview">
       <h2>Your Bouquet Preview</h2>
-      <!-- Live preview goes here -->
+      <div class="preview-area">
+        <img id="preview-vase" />
+        <img id="preview-flower" />
+      </div>
+      <p id="preview-message"></p>
     </section>
+
   </main>
 
-  <script type="module" src="scripts/main.js"></script>
+  <script type="module" src="./scripts/main.js"></script>
 </body>
 </html>
