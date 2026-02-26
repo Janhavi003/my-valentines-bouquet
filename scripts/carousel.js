@@ -2,12 +2,11 @@ export function initCarousel({ items, trackElement, prevButton, nextButton, onCh
   let index = 0;
 
   function render() {
-    const item = items[index];
     trackElement.innerHTML = `
-      <img src="${item.image}">
-      <p>${item.name}</p>
+      <img src="${items[index].image}">
+      <p>${items[index].name}</p>
     `;
-    onChange(item);
+    onChange(items[index]);
   }
 
   prevButton.onclick = () => {
