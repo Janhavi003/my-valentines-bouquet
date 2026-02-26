@@ -1,82 +1,79 @@
 import { flowers, vases } from "./data.js";
 import { initCarousel } from "./carousel.js";
+import { bouquet, saveBouquet, loadBouquet, getBouquets } from "./bouquet.js";
 
-/* --------------------
-   PREVIEW ELEMENTS
--------------------- */
+console.log("bouquet import:", bouquet);
 const previewFlower = document.getElementById("preview-flower");
 const previewVase = document.getElementById("preview-vase");
 const previewMessage = document.getElementById("preview-message");
+const messageInput = document.querySelector(".message-input");
+const toast = document.getElementById("toast");
+const savedList = document.getElementById("saved-bouquets");
 
-/* --------------------
-   BOUQUET STATE
--------------------- */
-const bouquet = {
-  flower: null,
-  vase: null,
-  message: ""
-};
-
-/* --------------------
-   DOM ELEMENTS
--------------------- */
-const flowerTrack = document.getElementById("flower-carousel");
-const vaseTrack = document.getElementById("vase-carousel");
-
-const flowerButtons = document.querySelectorAll(
-  ".section:nth-of-type(1) .carousel-btn"
-);
-const vaseButtons = document.querySelectorAll(
-  ".section:nth-of-type(2) .carousel-btn"
-);
-
-/* --------------------
-   PREVIEW UPDATE
--------------------- */
 function updatePreview() {
-  if (bouquet.vase) {
-    previewVase.src = bouquet.vase.image;
-    previewVase.alt = bouquet.vase.name;
-  }
-
-  if (bouquet.flower) {
-    previewFlower.src = bouquet.flower.image;
-    previewFlower.alt = bouquet.flower.name;
-  }
-
+  if (bouquet.vase) previewVase.src = bouquet.vase.image;
+  if (bouquet.flower) previewFlower.src = bouquet.flower.image;
   previewMessage.textContent = bouquet.message;
 }
 
-/* --------------------
-   INIT CAROUSELS
--------------------- */
+function showToast(text) {
+  toast.textContent = text;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 2000);
+}
+
 initCarousel({
   items: flowers,
-  trackElement: flowerTrack,
-  prevButton: flowerButtons[0],
-  nextButton: flowerButtons[1],
-  onChange: (flower) => {
-    bouquet.flower = flower;
-    updatePreview();
-  }
+  trackElement: document.getElementById("flower-carousel"),
+  prevButton: document.querySelector(".section:nth-of-type(1) .carousel-btn:first-child"),
+  nextButton: document.querySelector(".section:nth-of-type(1) .carousel-btn:last-child"),
+  onChange: f => { bouquet.flower = f; updatePreview(); }
 });
 
 initCarousel({
   items: vases,
-  trackElement: vaseTrack,
-  prevButton: vaseButtons[0],
-  nextButton: vaseButtons[1],
-  onChange: (vase) => {
-    bouquet.vase = vase;
-    updatePreview();
-  }
+  trackElement: document.getElementById("vase-carousel"),
+  prevButton: document.querySelector(".section:nth-of-type(2) .carousel-btn:first-child"),
+  nextButton: document.querySelector(".section:nth-of-type(2) .carousel-btn:last-child"),
+  onChange: v => { bouquet.vase = v; updatePreview(); }
 });
 
-/* --------------------
-   MESSAGE INPUT
--------------------- */
-const messageInput = document.querySelector(".message-input");
-messageInput.addEventListener("input", (e) => {
+messageInput.oninput = e => {
   bouquet.message = e.target.value;
   updatePreview();
-});
+};
+
+document.querySelector(".save-btn").onclick = () => {
+  const name = prompt("Name your bouquet 💐");
+  if (!name) return;
+  saveBouquet(name);
+  showToast("Bouquet saved 💖");
+  renderSaved();
+};
+
+function renderSaved() {
+  savedList.innerHTML = "";
+  getBouquets().forEach(b => {
+    const li = document.createElement("li");
+    li.textContent = b.name;
+    li.onclick = () => {
+      loadBouquet(b.id);
+      messageInput.value = bouquet.message;
+      updatePreview();
+      showToast("Bouquet loaded 💐");
+    };
+    savedList.appendChild(li);
+  });
+}
+
+document.getElementById("export-btn").onclick = () => {
+  html2canvas(document.querySelector(".preview")).then(canvas => {
+    const a = document.createElement("a");
+    a.download = "my-valentines-bouquet.png";
+    a.href = canvas.toDataURL();
+    a.click();
+  });
+};
+
+renderSaved();
+updatePreview();
