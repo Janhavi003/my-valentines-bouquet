@@ -2,8 +2,8 @@
 
 An interactive, aesthetic bouquet builder that lets users design a custom Valentine’s bouquet by selecting flowers, choosing a vase, adding a personal message, and exporting the result as a shareable card.
 
-👉 **Live Demo:** https://your-username.github.io/my-valentines-bouquet/  
-👉 **Source Code:** https://github.com/your-username/my-valentines-bouquet  
+👉 **Live Demo:** https://janhavi003.github.io/my-valentines-bouquet/
+👉 **Source Code:** https://github.com/Janhavi003/my-valentines-bouquet
 
 ---
 
