@@ -54,7 +54,6 @@ main {
 .carousel-track {
   width: 200px;
   text-align: center;
-  animation: fadeIn 0.4s ease;
 }
 
 .carousel-track img {
@@ -72,11 +71,11 @@ main {
   color: white;
   font-size: 1.5rem;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: transform 0.15s ease;
 }
 
-.carousel-btn:hover {
-  transform: scale(1.1);
+.carousel-btn:active {
+  transform: scale(0.9);
 }
 
 /* MESSAGE */
@@ -101,22 +100,17 @@ main {
 }
 
 /* EXPORT CARD */
-/* EXPORT CARD (FINAL) */
 .export-card {
   width: 420px;
   height: 640px;
-
   margin: 0 auto;
-
   background: linear-gradient(135deg, #ffe4ec, #f3e8ff);
   border-radius: 32px;
   padding: 2rem;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-
   text-align: center;
 }
 
@@ -133,19 +127,15 @@ main {
   max-height: 100%;
 }
 
-.to-line {
-  font-size: 0.95rem;
+#preview-message {
+  font-style: italic;
   color: var(--text-muted);
 }
 
+.to-line,
 .from-line {
   font-size: 0.95rem;
   color: var(--text-muted);
-}
-
-#preview-message {
-  font-style: italic;
-  margin: 0.5rem 0;
 }
 
 /* BUTTONS */
@@ -158,9 +148,19 @@ main {
   background: var(--primary);
   color: white;
   cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* SAVED */
+.save-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.save-btn:active {
+  transform: scale(0.96);
+}
+
+/* SAVED LIST */
 #saved-bouquets {
   list-style: none;
 }
@@ -190,15 +190,4 @@ main {
 .toast.show {
   opacity: 1;
   transform: translateY(0);
-}
-
-/* ANIMATIONS */
-@keyframes fadeIn {
-  from { opacity: 0 }
-  to { opacity: 1 }
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(10px) }
-  to { opacity: 1; transform: translateY(0) }
 }
